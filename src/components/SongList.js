@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { selectSong } from '../actions';
 
 export class SongList extends Component {
     renderList() {
@@ -7,7 +8,10 @@ export class SongList extends Component {
             return (
                 <div className="item" key={song.title}>
                     <div className="right floated Scontent">
-                        <button className="ui button primary">
+                        <button
+                            onClick={() => this.props.selectSong(song)}
+                            className="ui button primary"
+                        >
                             Select
                         </button>
                     </div>
@@ -27,8 +31,12 @@ export class SongList extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {//It'll  rerun everytime if we change or trigger any reducers
+    //console.log(state);
+
     return { songs: state.songs };
 }
 
-export default connect(mapStateToProps)(SongList)
+export default connect(mapStateToProps, {
+    selectSong: selectSong
+})(SongList)
