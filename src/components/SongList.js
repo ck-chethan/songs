@@ -37,6 +37,4 @@ const mapStateToProps = (state) => {//It'll  rerun everytime if we change or tri
     return { songs: state.songs };
 }
 
-export default connect(mapStateToProps, {
-    selectSong: selectSong
-})(SongList)
+export default connect(mapStateToProps, { selectSong })(SongList)
